@@ -24,7 +24,9 @@ done
 echo "Kafka is fully ready."
 
 docker exec  $KAFKA_CONTAINER_NAME cub kafka-ready -b localhost:9092 1 20
-docker exec  $KAFKA_CONTAINER_NAME kafka-topics --create --if-not-exists --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1 --topic your_topic_name_1
-docker exec  $KAFKA_CONTAINER_NAME kafka-topics --create --if-not-exists --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1 --topic your_topic_name_2
+docker exec  $KAFKA_CONTAINER_NAME kafka-topics --create --if-not-exists --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1 --topic account
+docker exec  $KAFKA_CONTAINER_NAME kafka-topics --create --if-not-exists --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1 --topic report
+docker exec  $KAFKA_CONTAINER_NAME kafka-topics --create --if-not-exists --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1 --topic payment
 
 echo "Topics created successfully."
+ 

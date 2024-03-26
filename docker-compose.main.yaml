@@ -30,7 +30,11 @@ services:
 
 
   kafka-connect:
-    image: confluentinc/cp-kafka-connect:latest
+    build: 
+      context: ./kafka/kafka-connect-jdbc
+      dockerfile: KafkaConnect.Dockerfile   
+    image: custom-kafka-connect:latest   
+    #image: confluentinc/cp-kafka-connect:latest
     depends_on:
       - kafka
       - zookeeper
@@ -51,9 +55,10 @@ services:
       CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_KEY_CONVERTER_SCHEMAS_ENABLE: "false"
       CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
-      CONNECT_PLUGIN_PATH: "/usr/share/java"
+      CONNECT_PLUGIN_PATH: "/usr/share/java,/etc/kafka-connect/jars" 
     networks:
       - kafka-network
+
 
   schema-registry:
     image: confluentinc/cp-schema-registry:4.1.0
@@ -78,7 +83,7 @@ services:
       KAFKA_BROKERS: kafka:9092
       CONFIG_FILEPATH: /etc/redpanda-console/redpanda-console-config.yml
     volumes:
-      - ./redpanda-console-config.yml:/etc/redpanda-console/redpanda-console-config.yml
+      - ./kafka/redpanda-console-config.yml:/etc/redpanda-console/redpanda-console-config.yml
     networks:
       - kafka-network 
 

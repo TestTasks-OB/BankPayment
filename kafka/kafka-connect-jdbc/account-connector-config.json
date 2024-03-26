@@ -1,0 +1,14 @@
+{
+    "name": "jdbc-postgres-sink-example",
+    "config": {
+      "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+      "connection.url": "jdbc:postgresql://account_db_1:5432/db",
+      "connection.user": "admin_user",
+      "connection.password": "admin_password",
+      "topics": "account",
+      "tasks.max": "1",
+      "auto.create": "false",
+      "table.name.format": "account"
+    }
+  }
+  

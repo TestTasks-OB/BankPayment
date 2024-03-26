@@ -25,4 +25,3 @@ graph TD
     kafka -.->|Kafka Connect Report Data| db_report
 
 ```
- 
